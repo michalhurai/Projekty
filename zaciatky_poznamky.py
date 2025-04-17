@@ -108,3 +108,9 @@ nove_cz_slovo = input("Zadaj nove CZ slovo: ") # pridanie kľúča
 nove_en_slovo = input(f"Zadaj EN preklad {nove_cz_slovo}: ") # pridanie hodnoty
 slovnik[nove_cz_slovo] = nove_en_slovo # párovanie hodnôt
 print(slovnik)
+ceska_slova = input("Zadaj CZ slovo: ") # ako vyhľadať kľúč (CZ) v slovníku a vrátiť jeho hodnotu (EN)
+preklad = slovnik.get(ceska_slova)
+if preklad:
+    print(f"EN preklad pre {ceska_slova} je: {preklad}")
+else:
+    print(f"Slovo {ceska_slova} nie je v slovníku")
