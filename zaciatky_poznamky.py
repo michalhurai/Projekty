@@ -97,20 +97,49 @@ slovnik = {
     "auto": "car",
     "dům": "house"
 }
-print(len(slovnik)) # zobrazí počet záznamov v slovníku "dĺžku"
-ceska_slova = slovnik.keys()
-anglicka_slova = slovnik.values()
-print(dict.keys(slovnik)) # vráti hodnotu "na pravej strane" = KĽÚČ
-print(ceska_slova) # varianta pri definovaní "kľúča"
-print(dict.values(slovnik)) # vrátif hodnotu "na ľavej strane" = HODNOTA
-print(anglicka_slova) # varianta pri definovaní "hodnoty"
-nove_cz_slovo = input("Zadaj nove CZ slovo: ") # pridanie kľúča
-nove_en_slovo = input(f"Zadaj EN preklad {nove_cz_slovo}: ") # pridanie hodnoty
-slovnik[nove_cz_slovo] = nove_en_slovo # párovanie hodnôt
-print(slovnik)
-ceska_slova = input("Zadaj CZ slovo: ") # ako vyhľadať kľúč (CZ) v slovníku a vrátiť jeho hodnotu (EN)
-preklad = slovnik.get(ceska_slova)
-if preklad:
-    print(f"EN preklad pre {ceska_slova} je: {preklad}")
-else:
-    print(f"Slovo {ceska_slova} nie je v slovníku")
+
+počet_slov = len(slovnik) 
+print("Počet slov:", počet_slov)  # zobrazí počet záznamov v slovníku "dĺžku"
+
+# 2.
+print("Česká slova:", list(slovnik.keys())) # vráti hodnotu "na pravej strane" = KĽÚČ
+print(dict.keys(slovnik)) # alternatíva bez "záhlavia"
+
+# 3.
+print("Anglická slova:", list(slovnik.values())) # varianta pri definovaní "kľúča"
+print(dict.values(slovnik)) # alternatíva bez "záhlavia"
+
+# 4.
+ceske_slovo = input("Zadej české slovo: ") # pridanie kľúča
+anglicky_preklad = input("Zadej anglicky překlad: ") # pridanie hodnoty
+slovnik[ceske_slovo] = anglicky_preklad # párovanie hodnôt, dodanie hodnoty aj kľúča do slovníka
+
+# 5
+vyhledej = input("Jaké slovo hledáš? ")
+print(slovnik.get(vyhledej, f"Slovo {vyhledej} není ve slovníku.")) # vyhľadá kľúč v slovníku
+
+# 6
+odstraň = input("Jaké slovo chceš odstranit? ")
+slovnik.pop(odstraň)
+print(slovnik) # odstráni zadané slovo
+pozdrav = f"Ahoj {meno}" # f-string preddefinovanie kľudne aj celého reťazca
+print(pozdrav)
+
+# .copy používa sa copy.deepcopy = vtedy sa pri modifikácii upraví iba daný zoznam a nie prvotný
+# .pop sa dá nahradiť univerzálnou metodou "del"
+# .popitem() maže posledne dodanú hodnotu a kľúč
+# .get namiesto chyby ktorá spôsobí pád systému vráti hodnotu "NONE"
+auta = uzivatel.setdefault("auta", ["Skoda Octavia"]) # .setdefault - vezme z listu, ak nemá tak pridadí definovanú hodnotu
+print(auta) # = Skoda Octavia (užívateľ nemá auto tak mu dáme Octaviu)
+# .update spája viacero slovníkov
+
+# SET: zoznamy/množiny FROZENSET: nemeniteľné zoznamy/množiny
+# .union nahrádza znak "|"
+# .intersection nahrádza znak "&"
+# .difference nahrádza znak "-"
+# .simmetric_difference nahrádza znak "^"
+
+# VOLITEĽNÉ ARGUMENTY
+# print("Ja", "Ty", "On", sep=",", end="a ") # oddeľuje text napríklad čiarkou (sep) + môže pokračovať v riadku (end)
+# print("Ona", "Oni", "My", sep=",")
+
