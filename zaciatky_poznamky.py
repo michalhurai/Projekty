@@ -17,15 +17,15 @@ print(2 in (1, 2, 3, 4))
 zoznam = (1, 2, 3)
 zoznam_1 = (1, 2, 3)
 print(zoznam == zoznam_1) # == !=: porovnávajú hodnotu (celý text); is is not: porovnávajú objekt
-cislo_1 = input("Zadaj prvé číslo:")
-cislo_2 = input("Zadaj druhé číslo:")
+cislo_1 = input("Zadaj prvé číslo: ")
+cislo_2 = input("Zadaj druhé číslo: ")
 if cislo_1 == cislo_2:          # if, elif, else: posledná podmienka "else" sa zadáva bez podmienky, už iba výsledok (print)
     print("Čísla sú rovnaké")
 elif cislo_1 > cislo_2:
     print("Prvé číslo je väčie")
 else:
     print("Druhé číslo je väčšie")
-nove_cislo = int(input("ZADAJ ČÍSLO:")) # pre definíciu čísla vo funkcii "input" sa musí dodať pred zátvorku "int" / "float"
+nove_cislo = int(input("ZADAJ ČÍSLO: ")) # pre definíciu čísla vo funkcii "input" sa musí dodať pred zátvorku "int" / "float"
 if nove_cislo % 3 == 0 and nove_cislo % 5 == 0:
     print("FizzBuzz")
 elif nove_cislo % 5 == 0:
@@ -49,7 +49,7 @@ books_naopak = books.copy() # kópia zoznamu
 books_naopak.reverse() # otočiť poradie
 print(books_naopak)
 print(len(books)) # spočíta záznamy - počet záznamov v zozname
-search_title = input("ZADAJ NÁZOV KNIHY:")
+search_title = input("ZADAJ NÁZOV KNIHY: ")
 if search_title in books:
     position = books.index(search_title) # hľadanie pozície v zozname
     print(f"Kniha {search_title} je v zozname na {position} pozícii.")
@@ -97,7 +97,14 @@ slovnik = {
     "auto": "car",
     "dům": "house"
 }
-print(len(slovnik))
+print(len(slovnik)) # zobrazí počet záznamov v slovníku "dĺžku"
+ceska_slova = slovnik.keys()
+anglicka_slova = slovnik.values()
 print(dict.keys(slovnik)) # vráti hodnotu "na pravej strane" = KĽÚČ
-print(dict.values(slovnik))
-
+print(ceska_slova) # varianta pri definovaní "kľúča"
+print(dict.values(slovnik)) # vrátif hodnotu "na ľavej strane" = HODNOTA
+print(anglicka_slova) # varianta pri definovaní "hodnoty"
+nove_cz_slovo = input("Zadaj nove CZ slovo: ") # pridanie kľúča
+nove_en_slovo = input(f"Zadaj EN preklad {nove_cz_slovo}: ") # pridanie hodnoty
+slovnik[nove_cz_slovo] = nove_en_slovo # párovanie hodnôt
+print(slovnik)
