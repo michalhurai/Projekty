@@ -1,3 +1,10 @@
+# ODKAZY:
+# https://www.w3schools.com/python/python_ref_keywords.asp
+# https://www.w3schools.com/python/python_ref_list.asp
+# https://www.w3schools.com/python/python_strings_methods.asp
+
+# LIST: v hranatých zátvorkách [] - obsah dá sa meniť
+# TUPLE: v okrúhlych zátvorách (), alebo aj bez nich - obsah sa nedá meniť
 print(("ja "+"ty " + "! ") *5) # spájanie stringu a násobenie
 print(len("abeceda zjedla deda")) # meranie dĺžky stringu 
 print("abeceda"[0]) # indexovanie - vypísanie znaku v poradí: "0" je prvý znak, "-1" je posledný znak
@@ -17,6 +24,7 @@ print(2 in (1, 2, 3, 4))
 zoznam = (1, 2, 3)
 zoznam_1 = (1, 2, 3)
 print(zoznam == zoznam_1) # == !=: porovnávajú hodnotu (celý text); is is not: porovnávajú objekt
+
 cislo_1 = input("Zadaj prvé číslo: ")
 cislo_2 = input("Zadaj druhé číslo: ")
 if cislo_1 == cislo_2:          # if, elif, else: posledná podmienka "else" sa zadáva bez podmienky, už iba výsledok (print)
@@ -25,6 +33,7 @@ elif cislo_1 > cislo_2:
     print("Prvé číslo je väčie")
 else:
     print("Druhé číslo je väčšie")
+
 nove_cislo = int(input("ZADAJ ČÍSLO: ")) # pre definíciu čísla vo funkcii "input" sa musí dodať pred zátvorku "int" / "float"
 if nove_cislo % 3 == 0 and nove_cislo % 5 == 0:
     print("FizzBuzz")
@@ -36,6 +45,18 @@ else:
     print(nove_cislo)
 
 #METODY - PODMIENKY - PRIKAZY
+# .appen: pridá záznam na koniec listu
+# .clear: vyčistí list
+# .copy: kopírovať list
+# .count:
+# .extend:
+# .index:
+# .insert: dodá záznam na konkrétnu pozíciu v liste
+# .pop:
+# .remove: odstráni záznam v liste
+# .reverse: obráti zoznam v liste
+# .sort: zoradí list abecedne
+
 books = ["1984", "Brave New World", "Fahrenheit 451", "The Hobbit"]
 books.append("Dune") # doplniť na koniec zoznamu
 print(books) 
@@ -55,13 +76,15 @@ if search_title in books:
     print(f"Kniha {search_title} je v zozname na {position} pozícii.")
 else:
     print(f"Kniha nebola nájdená")
+
 zaznam = ["""2021-01-01 11:11:11:1111 - něco se děje,
 2021-01-01 11:12:11:1111 - nic to nebylo,
 2021-01-01 11:13:11:1111 - a přece něco!,"""]
-zaznam.insert(0, "BANG")
+zaznam.insert(0, "2021-01-01 11:10:11:1111 - BANG,")
 print(zaznam)
-zaznam.append("BANG BANG!")
+zaznam.append("2021-01-01 11:14:11:1111 - BANG BANG!")
 print(zaznam)
+
 heslo = input("ZADAJ HESLO: ")
 if not heslo:
     print("Nezadal si heslo")
@@ -76,7 +99,7 @@ elif heslo.isnumeric() or heslo.isalpha():
 else:
     print("Heslo je v poriadku")
 
-#SLOVNÍKY: zadávajú sa do {}
+# SLOVNÍKY: zadávajú sa do {}
 uzivatel = {
     "jmeno": "Matouš",
     "vek": 100,
@@ -122,14 +145,17 @@ print(slovnik.get(vyhledej, f"Slovo {vyhledej} není ve slovníku.")) # vyhľad�
 odstraň = input("Jaké slovo chceš odstranit? ")
 slovnik.pop(odstraň)
 print(slovnik) # odstráni zadané slovo
-pozdrav = f"Ahoj {meno}" # f-string preddefinovanie kľudne aj celého reťazca
+
+# f-string preddefinovanie kľudne aj celého reťazca
+pozdrav = f"Ahoj {meno}" 
 print(pozdrav)
 
 # .copy používa sa copy.deepcopy = vtedy sa pri modifikácii upraví iba daný zoznam a nie prvotný
-# .pop sa dá nahradiť univerzálnou metodou "del"
+# .pop sa dá nahradiť univerzálnou metodou "del": del slovnik["kočka"] 
 # .popitem() maže posledne dodanú hodnotu a kľúč
 # .get namiesto chyby ktorá spôsobí pád systému vráti hodnotu "NONE"
-auta = uzivatel.setdefault("auta", ["Skoda Octavia"]) # .setdefault - vezme z listu, ak nemá tak pridadí definovanú hodnotu
+
+auta = uzivatel.setdefault("auta", ["Skoda Octavia"]) # .setdefault - vezme hodnotu z listu, ak nemá tak pridadí definovanú hodnotu
 print(auta) # = Skoda Octavia (užívateľ nemá auto tak mu dáme Octaviu)
 # .update spája viacero slovníkov
 
@@ -140,6 +166,6 @@ print(auta) # = Skoda Octavia (užívateľ nemá auto tak mu dáme Octaviu)
 # .simmetric_difference nahrádza znak "^"
 
 # VOLITEĽNÉ ARGUMENTY
-# print("Ja", "Ty", "On", sep=",", end="a ") # oddeľuje text napríklad čiarkou (sep) + môže pokračovať v riadku (end)
-# print("Ona", "Oni", "My", sep=",")
+# print("Ja", "Ty", "On", sep=", ", end="a ") # oddeľuje text napríklad čiarkou (sep) + môže pokračovať v riadku (end)
+# print("Ona", "Oni", "My", sep=", ")
 
