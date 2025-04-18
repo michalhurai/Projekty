@@ -57,6 +57,7 @@ else:
 # .reverse: obráti zoznam v liste
 # .sort: zoradí list abecedne
 
+# ZOZNAMY modifikácia/úprava
 books = ["1984", "Brave New World", "Fahrenheit 451", "The Hobbit"]
 books.append("Dune") # doplniť na koniec zoznamu
 print(books) 
@@ -85,6 +86,7 @@ print(zaznam)
 zaznam.append("2021-01-01 11:14:11:1111 - BANG BANG!")
 print(zaznam)
 
+# PODMIENKY if/elif/else - domáca úloha 2.lekcia
 heslo = input("ZADAJ HESLO: ")
 if not heslo:
     print("Nezadal si heslo")
@@ -121,15 +123,15 @@ slovnik = {
     "dům": "house"
 }
 
-počet_slov = len(slovnik) 
+počet_slov = len(slovnik) # zobrazí počet záznamov v slovníku "dĺžku"
 print("Počet slov:", počet_slov)  # zobrazí počet záznamov v slovníku "dĺžku"
 
 # 2.
-print("Česká slova:", list(slovnik.keys())) # vráti hodnotu "na pravej strane" = KĽÚČ
+print("Česká slova:", list(slovnik.keys())) # vráti hodnotu "na ľavej strane" = KĽÚČ - KEYS
 print(dict.keys(slovnik)) # alternatíva bez "záhlavia"
 
 # 3.
-print("Anglická slova:", list(slovnik.values())) # varianta pri definovaní "kľúča"
+print("Anglická slova:", list(slovnik.values())) # vráti hodnotu "na pravej strane" = HODNOTA - VALUES
 print(dict.values(slovnik)) # alternatíva bez "záhlavia"
 
 # 4.
@@ -141,12 +143,20 @@ slovnik[ceske_slovo] = anglicky_preklad # párovanie hodnôt, dodanie hodnoty aj
 vyhledej = input("Jaké slovo hledáš? ")
 print(slovnik.get(vyhledej, f"Slovo {vyhledej} není ve slovníku.")) # vyhľadá kľúč v slovníku
 
+ceske_slovo = input("Zadej české slovo pro ověření: ")
+preklad = slovnik.get(ceske_slovo)
+if preklad:
+    print(f"Anglický překlad pro '{ceske_slovo}' je: {preklad}")
+else:
+    print(f"Slovo '{ceske_slovo}' není ve slovníku.") # náhrada za funkciu .get
+
 # 6
 odstraň = input("Jaké slovo chceš odstranit? ")
 slovnik.pop(odstraň)
 print(slovnik) # odstráni zadané slovo
+del slovnik["kočka"] # odstráni konkrétny kľúč a hodnotu
 
-# f-string preddefinovanie kľudne aj celého reťazca
+# F-STRING preddefinovanie kľudne aj celého reťazca
 pozdrav = f"Ahoj {meno}" 
 print(pozdrav)
 
@@ -159,13 +169,164 @@ auta = uzivatel.setdefault("auta", ["Skoda Octavia"]) # .setdefault - vezme hodn
 print(auta) # = Skoda Octavia (užívateľ nemá auto tak mu dáme Octaviu)
 # .update spája viacero slovníkov
 
-# SET: zoznamy/množiny FROZENSET: nemeniteľné zoznamy/množiny
-# .union nahrádza znak "|"
-# .intersection nahrádza znak "&"
-# .difference nahrádza znak "-"
-# .simmetric_difference nahrádza znak "^"
+# SET: zoznamy/množiny FROZENSET: nemeniteľné zoznamy/množiny - nedá sa dodávať ani odoberať hodnota
+# .union nahrádza znak "|" - spája sety (všetky hodnoty)
+# .intersection nahrádza znak "&" - spája iba spoločné hodnoty v setoch
+# .difference nahrádza znak "-" - vráti rozdiely v setoch (A - B, B - A)
+# .simmetric_difference nahrádza znak "^" - vráti všetky rozdiely v setoch
+# .remove - nahrádza sa .discard pokiaľ nechceme aby program padol
+
+# Předem dané množiny
+mnozina_1 = {"kočka", "pes", "králík", "had"}
+mnozina_2 = {"pes", "papoušek", "had", "ryba"}
+
+# 1. Zjištění, kolik různých zvířat obsahuje každá množina
+pocet_mnozina_1 = len(mnozina_1)
+pocet_mnozina_2 = len(mnozina_2)
+print(f"Množina 1 obsahuje {pocet_mnozina_1} zvířat.")
+print(f"Množina 2 obsahuje {pocet_mnozina_2} zvířat.")
+
+# 2. Výpis zvířat, která jsou v první množině, ale nejsou ve druhé (rozdíl množin)
+rozdil_1_2 = mnozina_1 - mnozina_2
+print("Zvířata v první množině, ale ne ve druhé:", rozdil_1_2)
+
+# 3. Výpis zvířat, která jsou ve druhé množině, ale nejsou v první
+rozdil_2_1 = mnozina_2 - mnozina_1
+print("Zvířata ve druhé množině, ale ne v první:", rozdil_2_1)
+
+# 4. Průnik množin (zvířata, která jsou v obou množinách)
+prunik = mnozina_1 & mnozina_2
+print("Zvířata, která jsou v obou množinách:", prunik)
+
+# 5. Sjednocení množin (všechna zvířata z obou množin)
+sjednoceni = mnozina_1 | mnozina_2
+print("Všechna zvířata z obou množin:", sjednoceni)
+
+# 6. Přidání nového zvířete zadaného uživatelem do první množiny
+nove_zvire = input("Zadej nové zvíře, které chceš přidat do první množiny: ")
+mnozina_1.add(nove_zvire)
+print("Aktualizovaná množina 1:", mnozina_1)
+
+# 7. Odstranění zvířete zadaného uživatelem z druhé množiny
+zvire_k_odstraneni = input("Zadej zvíře, které chceš odstranit z druhé množiny: ")
+if zvire_k_odstraneni in mnozina_2:
+    mnozina_2.remove(zvire_k_odstraneni)
+    print(f"Zvíře '{zvire_k_odstraneni}' bylo odstraněno z druhé množiny.")
+else:
+    print(f"Zvíře '{zvire_k_odstraneni}' není ve druhé množině.")
+    
+print("Aktualizovaná množina 2:", mnozina_2)
 
 # VOLITEĽNÉ ARGUMENTY
 # print("Ja", "Ty", "On", sep=", ", end="a ") # oddeľuje text napríklad čiarkou (sep) + môže pokračovať v riadku (end)
 # print("Ona", "Oni", "My", sep=", ")
 
+skupina_1 = [
+    'h.vybíralová@firma.cz', 'w.štrumlová@firma.cz', 'm.vybíralová@firma.cz',
+    's.bechyňka@firma.cz', 'z.urbánková@firma.cz', 'l.riečan@firma.cz',
+    'v.koudelová@firma.cz', 'f.vorlová@firma.cz', 'i.seleš@firma.cz'
+]
+
+skupina_2 = [
+    'j.šmíd@firma.cz', 'j.procházková@firma.cz', 'l.riečan@firma.cz', 'd.hlavatá@firma.cz', 
+    'm.železný@firma.cz', 'p.niklesová@firma.cz', 'b.skok@firma.cz',
+]
+
+s1 = set(skupina_1)
+s2 = set(skupina_2)
+
+if s1 & s2: # vyhľadať prienik a vypísať výsledok
+    print("Máme užívateľa v oboch skupinách")
+else:
+    print("Žiadny užívateľ v oboch skupínách")
+
+print(s1 & s2) # vyhľadať prienik a vypísať hodnotu
+s2.discard('l.riečan@firma.cz') # zmazať prienik
+s2.add("matous.holinka@firma.cz") # dodať do skupiny_2
+print(s2)
+s = frozenset(s1.union(s2)) # zjednotiť skupiny a definovať ako "frozenset"
+print (s)
+
+# Zjednotenie slovníkov (domáca úlohy 3.lekcia)
+pozdrav = "VÍTEJ V NAŠEM FILMOVÉM SLOVNÍKU!"
+sluzby = ("dostupné filmy", "detaily filmu", "seznam režisérů")
+hlavička = " | " .join(sluzby).center(62) # .join zjednotí položky zoznamu, ako prvý sa zadáva separátor
+oddelovac = "=" * 62
+film_1 = {
+    "jmeno": "Shawshank Redemption",
+    "rating": "93/100",
+    "rok": 1994,
+    "reziser": "Frank Darabont",
+    "stopaz": 144
+}
+film_2 = {
+    "jmeno": "The Godfather",
+    "rating": "92/100",
+    "rok": 1972,
+    "reziser": "Francis Ford Coppola",
+    "stopaz": 175
+}
+film_3 = {
+    "jmeno": "The Dark Knight",
+    "rating": "90/100",
+    "rok": 2008,
+    "reziser": "Christopher Nolan",
+    "stopaz": 152
+}
+# sjednoť předchozí 3 slovníky do jednoho slovníku 'filmy'
+# .. klíčem bude jméno filmu a samotný slovník následuje
+# .. jako hodnota.
+filmy = {
+    film_1["jmeno"]: film_1,
+    film_2["jmeno"]: film_2,
+    film_3["jmeno"]: film_3,
+}
+
+print(pozdrav.center(62))
+print(oddelovac)
+print(hlavička)
+print(oddelovac)
+print("Dostupné filmy:".center(62))
+print(oddelovac)
+print(", " .join(filmy.keys())) # .join zjednotí kľúce slovníka, ako prvý sa zadáva separátor
+print(oddelovac)
+print("Detail filmu:")
+print(oddelovac)
+print(filmy["The Dark Knight"]) # vyhľadá na základe kľúča v tomto prípade "jmeno" názov filmu
+print(oddelovac)
+print("Všetci režíséri:")
+print(oddelovac)
+
+reziseri = []
+for film in filmy.values():
+    for k, v in film.items():
+        if k == "reziser":
+            reziseri.append(v)
+print(reziseri)
+
+# FOR / IN
+for pismeno in ['a', 'b', 'c']:
+    print(pismeno)
+# SETY
+for jmeno in {"Matouš", "Marek", "Lukáš"}:
+    print(jmeno)
+# TUPLE
+for jmeno in ("Matouš", "Marek", "Lukáš"):
+    print(jmeno)
+# LIST
+for jmeno in ["Matouš", "Marek", "Lukáš"]:
+    print(jmeno)
+# SLOVNIK
+for klic, hodnota in {
+    "jmeno": "Matous",
+    "prijmeni": "Holinka",
+    "email": "matous@holinka.com"
+}.items():
+    print(klic, hodnota, sep="=")
+
+pismena = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
+for pismeno in pismena:
+    if pismeno == "g":  # "a" --> False
+        print("*Mam hodnotu ->*", pismeno)
+    else:
+        print("Nemam 'g', ale", pismeno)
