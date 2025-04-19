@@ -25,6 +25,37 @@ zoznam = (1, 2, 3)
 zoznam_1 = (1, 2, 3)
 print(zoznam == zoznam_1) # == !=: porovnávajú hodnotu (celý text); is is not: porovnávajú objekt
 
+# Domáca úloha 1.lekcia
+mesta = ["Praha", "Viden", "Olomouc", "Svitavy", "Zlin", "Ostrava"]
+ceny = (150, 200, 120, 120, 100, 180)
+cara = "=" * 35
+nabidka = """
+1 - Praha   | 150
+2 - Viden   | 200
+3 - Olomouc | 120
+4 - Svitavy | 120
+5 - Zlin    | 100
+6 - Ostrava | 180
+"""
+
+print("VITEJTE U NASI APLIKACE DESTINATIO!")
+print(cara)
+print(nabidka)
+print(cara)
+
+destinace = input("CISLO DESTINACE: ")
+jmeno = input("JMENO: ")
+prijmeni = input("PRIJMENI: ")
+email = input("EMAIL: ")
+print(cara)
+
+spravna_destinace = mesta[int(destinace) - 1]
+cena = ceny[int(destinace) - 1]
+
+print(f"""DEKUJI, {jmeno} ZA OBJEDNAVKU,
+CIL. DESTINACE: {spravna_destinace}, CENA JIZDNEHO: {cena},
+NA TVUJ MAIL {email} JSME TI POSLALI LISTEK.""")
+
 cislo_1 = input("Zadaj prvé číslo: ")
 cislo_2 = input("Zadaj druhé číslo: ")
 if cislo_1 == cislo_2:          # if, elif, else: posledná podmienka "else" sa zadáva bez podmienky, už iba výsledok (print)
@@ -82,7 +113,6 @@ zaznam = ["""2021-01-01 11:11:11:1111 - něco se děje,
 2021-01-01 11:12:11:1111 - nic to nebylo,
 2021-01-01 11:13:11:1111 - a přece něco!,"""]
 zaznam.insert(0, "2021-01-01 11:10:11:1111 - BANG,")
-print(zaznam)
 zaznam.append("2021-01-01 11:14:11:1111 - BANG BANG!")
 print(zaznam)
 
@@ -304,7 +334,18 @@ for film in filmy.values():
             reziseri.append(v)
 print(reziseri)
 
-# FOR / IN
+# úloha po 3.lekcii
+jmeno = "Marek"
+heslo = "1234"
+uzivatel = {"Marek": "1234"}
+zprava = f"Ahoj {jmeno}, vítej v aplikaci! Pokračuj..."
+oznam = "Uživatelské jméno nebo heslo nejsou v pořádku!"
+if heslo == uzivatel.get(jmeno) and jmeno in uzivatel:
+    print(f"Výstup: {zprava}")
+else:
+    print(f"Výstup: {oznam}")
+
+# FOR / IN - iterácia, vypisovanie hodnôt (v riadkoch): ČÍSLA SA ITEROVAŤ NEDAJÚ!
 for pismeno in ['a', 'b', 'c']:
     print(pismeno)
 # SETY
@@ -317,12 +358,12 @@ for jmeno in ("Matouš", "Marek", "Lukáš"):
 for jmeno in ["Matouš", "Marek", "Lukáš"]:
     print(jmeno)
 # SLOVNIK
-for klic, hodnota in {
+for kyes, values in {
     "jmeno": "Matous",
     "prijmeni": "Holinka",
     "email": "matous@holinka.com"
 }.items():
-    print(klic, hodnota, sep="=")
+    print(kyes, values, sep=": ") # vypíše slovník, možno dodať separátor. Ak zadám iba kyes, vráti iba kľúče (values detto)
 
 pismena = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
 for pismeno in pismena:
@@ -330,3 +371,80 @@ for pismeno in pismena:
         print("*Mam hodnotu ->*", pismeno)
     else:
         print("Nemam 'g', ale", pismeno)
+
+suda_cisla = list()
+
+for cislo in (1, 2, 3, 4, 5):
+    if cislo % 2 == 0:      # pokud je hodnota v proměnné "cislo" sudá
+        suda_cisla.append(cislo)  # ... přidej ji do seznamu "suda_cisla"
+
+# po skončení smyčky vypíšeme obsah proměnné 'suda_cisla'
+print(suda_cisla) # dodanie hodnoty to zoznamu (listu)
+
+for cislo in (1, 2, 3, 4, 5):
+    if cislo % 2 == 0:
+        print("Sude cislo")
+    elif cislo % 2 != 0:
+        print("Liche cislo") # if/elif definícia/triedenie hodnôt
+
+for pismeno in ("a", "b", "c", "d"):
+    if pismeno == "c":
+        print("Nasel jsem 'c', preskakuji cyklus..")
+        break
+    print(pismeno) # BREAK - ak nájde hodnotu, ukončí interáciu
+
+for pismeno in ("a", "b", "c", "d"):
+    if pismeno in {"a", "b"}:
+        continue                             # CONTINUE - po vyhľadaní hodnôt, pokračuje v iterácii
+    print("Hodnota", pismeno, "je dulezita") # V tomto prípade porovnáva SET {a, b} a STR (a, b, c, d). C a D nie sú v sete, tak ich vypíše (print)
+
+for pismeno in ("a", "b", "c", "d"):
+    print(pismeno.upper())
+else:
+    print("Vsechna pismena vypsana") #FOR/ELSE - vypíše všetky hodnoty a ak neobsahuje BREAK vypíše druhý print
+
+for pismeno in ("a", "b", "c", "d"): # takto vypíše iba hľadanú hodnotu z LISTu
+    if pismeno == "c":
+        print("Nasel jsem 'c', preskakuji cyklus..")
+        break
+else:
+    # kvůli 'break' se tento text nevypíše po ukončení smyčky
+    print("Vsechna pismena vypsana")
+print("Pokracuji po smycce") # BREAK - vypíše hľadanú hodnotu, a kvôli BREAK nevypíše "ELSE", ale až posledný print
+
+for pismeno in "Matous":
+    print(pismeno)
+    break
+print("-" * 29, "Konec smycky!", "-" * 29, sep="\n") # pri vynechaní "ELSE" vypíše hodnotu a vypíše posledný print
+
+pismena = ["a", "b", "c", "d", "e", "f", "g", "h"]
+for pismeno in pismena: # týmto zápisom bude vypisovať hodnoty z TUPLE kým nenájde správnu
+    if pismeno == "e":
+        print("Mam hodnotu ->", pismeno)
+        break
+    else:
+        print("Nemam 'e', ale", pismeno)
+print("Pokracuji s interpretaci naseho zapisu ^.^") # po nájdený hľadanej hodnoty ukončí interáciu posledným printom
+
+for pismeno in "Matous":
+    print(pismeno) # tu sa interácia končí ale pridaním CONTINUE bude pokračova a cez ELSE vypíše posledný print
+    continue
+else:
+    print("-" * 29, "Konec smycky!", "-" * 29, sep="\n")
+
+pismena = ["a", "b", "c", "d", "e", "f", "g", "h"]
+for pismeno in pismena:
+    if pismeno in {"a", "b", "c", "d"}: # porovnáva SET s TUPLE a vypíše iba rozdielne hodnoty
+        continue
+    print("Hodnota je dulezita:", pismeno) # pomocou CONTINUE vypíše print pre hodnoty mimo SETu
+
+obsah = [
+    ['jmeno;prijmeni;email;projekt'],
+    ['Matous;Holinka;m.holinka@firma.cz;hr'],
+    ['Petr;Svetr;p.svetr@firma.cz;devops']
+]
+for lines in obsah:
+    print(lines)
+    for cells in lines[0].split(";"): # musí byť zadaná hodnota [0]
+        print(cells)
+

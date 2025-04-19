@@ -1,16 +1,9 @@
-jmeno = "Marek"
-heslo = "1234"
-uzivatel = {"Marek": "1234"}
-
-if heslo == uzivatel.get(jmeno) and jmeno in uzivatel:
-    print(f"Ahoj {jmeno}, vítej v aplikaci! Pokračuj...")
-else:
-    print("Uživatelské jméno nebo heslo nejsou v pořádku!")
-
-if heslo == uzivatel["Marek"] and jmeno in uzivatel:
-    print(f"Ahoj {jmeno}, vítej v aplikaci! Pokračuj...")
-else:
-    print("Uživatelské jméno nebo heslo nejsou v pořádku!")
-
-
-
+obsah = [
+    ['jmeno;prijmeni;email;projekt'],
+    ['Matous;Holinka;m.holinka@firma.cz;hr'],
+    ['Petr;Svetr;p.svetr@firma.cz;devops']
+]
+for lines in obsah:
+    print(lines)
+    for cells in lines[0].split(";"):
+        print(cells)
