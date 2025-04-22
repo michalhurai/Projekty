@@ -448,3 +448,27 @@ for lines in obsah:
     for cells in lines[0].split(";"): # musí byť zadaná hodnota [0]
         print(cells)
 
+# RANGE: rozsah
+
+for cislo in range(5):
+    print(cislo) # ak nezadáme prvú hodnotu, tak stále počíta od nuly DOSLOVA (5) = 0 - 4
+
+for cislo in range(0,20,2): # párne čísla (0,20,1) = nepárne čísla
+    print(cislo) # používa rovnakú syntaxu ako scisling (od:do:každý "x"): !POUŽÍVAJÚ SA OKRÚHLE ZÁTVORKY A SA ČIARKA!
+
+print(list(range(1000))) # vytlačí list alebo tuple čísiel
+print(list(range(0,10,-1))) # obrátený zoznam čísiel
+
+# ENUMERATE: "očísluje objekdy"
+
+print(tuple(enumerate(["ja", "ty", "on", "ona", "my"], start=1)))
+
+# ZIP: iteruje viacero objektov súčasne
+
+jmena    = ("Petr", "Marek", "David", "Adam")
+prijmeni = ("Svetr", "Pavel", "Dvořák")
+print(list(zip(jmena, prijmeni)))
+for jmeno, prijmeni in zip(jmena, prijmeni):
+    print(jmeno, prijmeni.upper())
+
+# https://docs.python.org/3/library/itertools.html
